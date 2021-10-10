@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="i18nAllyConfiguration">
+    <version>1.0</version>
+    <profiles>
+      <profile id="9fbb624e-6d70-4eb5-b3dd-15f5cefd1118">
+        <option name="sinkFileUpdateEnabled" value="true" />
+        <name>Laravel (PHP, BLADE)</name>
+        <keyNamingPattern>SNAKE_CASE_PATTERN</keyNamingPattern>
+        <sink>
+          <multiNameSpaceSink id="5a566399-0e16-42ad-9226-231e40d013db">
+            <translationsDirectory>$PROJECT_DIR$/resources/lang</translationsDirectory>
+            <defaultLocale>en</defaultLocale>
+            <fileType>PhpFileType</fileType>
+            <outputFileNameTemplate>%locale%/%namespace%.php</outputFileNameTemplate>
+            <namespaces>
+              <set>
+                <option value="auth" />
+                <option value="pagination" />
+                <option value="passwords" />
+                <option value="validation" />
+              </set>
+            </namespaces>
+            <placeholderFormatterName>LARAVEL</placeholderFormatterName>
+            <nestingType>.</nestingType>
+          </multiNameSpaceSink>
+        </sink>
+        <sources>
+          <plainphp id="32d1413b-da6e-4851-b0b4-12dcb933aa6a">
+            <functionName>trans</functionName>
+            <argumentsTemplate>'%namespace%.%key%', %map%</argumentsTemplate>
+            <sprintfMode>false</sprintfMode>
+            <scopePattern>file[hotel]:app//*&amp;&amp;!file[hotel]:app/Broadcasting//*&amp;&amp;!file[hotel]:app/Console//*&amp;&amp;!file[hotel]:app/Events//*&amp;&amp;!file[hotel]:app/Exceptions//*&amp;&amp;!file[hotel]:app/Models//*&amp;&amp;!file[hotel]:app/Providers//*</scopePattern>
+            <scopeName>i18n Ally: Laravel/PHP source</scopeName>
+            <skipDefaultNamespace>false</skipDefaultNamespace>
+          </plainphp>
+          <blade id="6ba496f4-10a6-4a1d-99d2-7c50a8383ba8">
+            <inlineTagNames>
+              <set>
+                <option value="small" />
+                <option value="tt" />
+                <option value="big" />
+                <option value="sub" />
+                <option value="img" />
+                <option value="strong" />
+                <option value="code" />
+                <option value="data" />
+                <option value="samp" />
+                <option value="wbr" />
+                <option value="del" />
+                <option value="slot" />
+                <option value="sup" />
+                <option value="br" />
+                <option value="output" />
+                <option value="abbr" />
+                <option value="a" />
+                <option value="b" />
+                <option value="acronym" />
+                <option value="bdi" />
+                <option value="meter" />
+                <option value="var" />
+                <option value="em" />
+                <option value="i" />
+                <option value="label" />
+                <option value="bdo" />
+                <option value="kbd" />
+                <option value="dfn" />
+                <option value="ins" />
+                <option value="ruby" />
+                <option value="input" />
+                <option value="q" />
+                <option value="s" />
+                <option value="u" />
+                <option value="cite" />
+                <option value="progress" />
+                <option value="time" />
+                <option value="mark" />
+                <option value="span" />
+              </set>
+            </inlineTagNames>
+            <translatableAttributeNames>
+              <set>
+                <option value="alt" />
+                <option value="placeholder" />
+                <option value="label" />
+                <option value="title" />
+                <option value="aria-label" />
+              </set>
+            </translatableAttributeNames>
+            <functionName>trans</functionName>
+            <argumentsTemplate>'%namespace%.%key%', %map%</argumentsTemplate>
+            <scopePattern>file[hotel]:resources/views//*</scopePattern>
+            <scopeName>i18n Ally: Laravel/Blade templates</scopeName>
+            <skipDefaultNamespace>false</skipDefaultNamespace>
+          </blade>
+        </sources>
+      </profile>
+    </profiles>
+    <ignores>
+      <valuesInProject>
+        <value>Object is liked &lt;span
+                        class=&quot;badge&quot;&gt;{{$object-&gt;users-&gt;count()}}&lt;/span&gt;</value>
+      </valuesInProject>
+      <valuesInFile />
+      <filesInProject />
+      <unignoredFunctionNames>
+        <set />
+      </unignoredFunctionNames>
+      <unignoredFunctionArguments>
+        <map />
+      </unignoredFunctionArguments>
+      <ignoredArrayKeys>
+        <set />
+      </ignoredArrayKeys>
+    </ignores>
+  </component>
+</project>

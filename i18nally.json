@@ -1,0 +1,48 @@
+{
+  "version" : "1.0",
+  "profiles" : [ {
+    "id" : "9fbb624e-6d70-4eb5-b3dd-15f5cefd1118",
+    "name" : "Laravel (PHP, BLADE)",
+    "keyNamingPattern" : "SNAKE_CASE_PATTERN",
+    "sink" : {
+      "id" : "5a566399-0e16-42ad-9226-231e40d013db",
+      "type" : "symfony",
+      "translationsDirectory" : "$PROJECT_DIR$/resources/lang",
+      "fileType" : "php",
+      "defaultLocale" : "en",
+      "namespaces" : [ "auth", "pagination", "passwords", "validation" ],
+      "outputFilenameTemplate" : "%locale%/%namespace%.php",
+      "nestingType" : "DOT",
+      "placeholderFormatterName" : "LARAVEL"
+    },
+    "sources" : [ {
+      "id" : "32d1413b-da6e-4851-b0b4-12dcb933aa6a",
+      "type" : "php",
+      "scopeName" : "i18n Ally: Laravel/PHP source",
+      "scopePattern" : "file[hotel]:app//*&&!file[hotel]:app/Broadcasting//*&&!file[hotel]:app/Console//*&&!file[hotel]:app/Events//*&&!file[hotel]:app/Exceptions//*&&!file[hotel]:app/Models//*&&!file[hotel]:app/Providers//*",
+      "functionName" : "trans",
+      "argumentsTemplate" : "'%namespace%.%key%', %map%",
+      "skipDefaultNamespace" : false,
+      "sprintfMode" : false
+    }, {
+      "id" : "6ba496f4-10a6-4a1d-99d2-7c50a8383ba8",
+      "type" : "blade",
+      "scopeName" : "i18n Ally: Laravel/Blade templates",
+      "scopePattern" : "file[hotel]:resources/views//*",
+      "functionName" : "trans",
+      "argumentsTemplate" : "'%namespace%.%key%', %map%",
+      "inlineTagNames" : [ "a", "abbr", "acronym", "b", "bdi", "bdo", "big", "br", "cite", "code", "data", "del", "dfn", "em", "i", "img", "input", "ins", "kbd", "label", "mark", "meter", "output", "progress", "q", "ruby", "s", "samp", "slot", "small", "span", "strong", "sub", "sup", "time", "u", "tt", "var", "wbr" ],
+      "translatableAttributeNames" : [ "title", "alt", "placeholder", "label", "aria-label" ],
+      "skipDefaultNamespace" : false
+    } ]
+  } ],
+  "ignores" : {
+    "valuesInProject" : [ "Object is liked <span\n                        class=\"badge\">{{$object->users->count()}}</span>" ],
+    "valuesInFile" : { },
+    "filesInProject" : [ ],
+    "unignoredFunctionNames" : [ ],
+    "unignoredFunctionArguments" : { },
+    "ignoredArrayKeys" : [ ]
+  },
+  "skipFrameWorkDetection" : false
+}
