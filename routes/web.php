@@ -28,8 +28,8 @@ Route::group(
 
 
     Route::get('/ajaxGetReservationData', 'BackendController@ajaxGetReservationData')->name('ajaxGetReservationData');
-    Route::get('/confirmResLink/{id}', 'BackendController@confirmResLink')->name('confirmResLink');
-    Route::get('/deleteResLink/{id}', 'BackendController@deleteResLink')->name('deleteResLink');
+    Route::get('/confirmReservation/{id}', 'BackendController@confirmResLink')->name('confirmReservation');
+    Route::get('/deleteReservation/{id}', 'BackendController@deleteResLink')->name('deleteReservation');
 }
 );
 Auth::routes();

@@ -45,8 +45,7 @@ class BackendController extends Controller
     }
     public function confirmResLink($id)
     {
-        return redirect()->bacK;
-    }
+$reservation=$this->bR->getReservation($id);   }
     public function deleteResLink()
     {
         return redirect()->back;

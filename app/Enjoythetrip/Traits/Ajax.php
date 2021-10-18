@@ -19,8 +19,8 @@ trait Ajax {
             'day_out' => $reservation->day_out,
             'FullName' => $reservation->user->FullName,
             'userLink' => route('person', ['id' => $reservation->user->id]),
-            'confirmResLink' => route('confirmResLink', ['id' => $reservation->id]),
-            'deleteResLink' => route('deleteResLink', ['id' => $reservation->id]),
+            'confirmResLink' => route('confirmReservation', ['id' => $reservation->id]),
+            'deleteResLink' => route('deleteReseservation', ['id' => $reservation->id]),
             'status' => $reservation->status
         ]);
     }

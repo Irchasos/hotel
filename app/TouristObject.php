@@ -35,7 +35,7 @@ class TouristObject extends Model
         return $this->hasOne('App\Address');
     }
 
-    final public function rooms()
+    final public function rooms():HasMany
     {
         return $this->hasMany('App\Room');
     }
