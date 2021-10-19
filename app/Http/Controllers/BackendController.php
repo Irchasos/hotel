@@ -10,6 +10,7 @@ class BackendController extends Controller
 
     public function __construct(BackendRepositoryInterface $backendRepository, BackendGateway $backendGateway )
     {
+        $this->middleware('CheckOwner')->only(['myobjects','confirmReservation','saveobject','saveroom']);
         $this->bR = $backendRepository;
         $this->bG = $backendGateway;
     }
@@ -19,10 +20,6 @@ class BackendController extends Controller
         return view('backend.index',['objects'=>$objects]);
     }
 
-    public function cities()
-    {
-        return view('backend.cities');
-    }
 
     public function myObjects()
     {
@@ -43,11 +40,35 @@ class BackendController extends Controller
     {
         return view('backend.saveroom');
     }
-    public function confirmResLink($id)
+    public function confirmReservation($id)
     {
-$reservation=$this->bR->getReservation($id);   }
-    public function deleteResLink()
-    {
-        return redirect()->back;
+        $reservation = $this->bR->getReservation($id);
+
+        $this->authorize('reservation', $reservation);
+
+        $this->bR->confirmReservation($reservation);
+
+        $this->flashMsg ('success', __('Reservation has been confirmed'));
+
+
+        if (!\Request::ajax())
+            return redirect()->back();
     }
+
+
+
+    public function deleteReservation($id)
+    {
+        $reservation = $this->bR->getReservation($id);
+
+        $this->authorize('reservation', $reservation);
+
+        $this->bR->deleteReservation($reservation);
+
+        $this->flashMsg ('success', __('Reservation has been deleted'));
+
+        if (!\Request::ajax())
+            return redirect()->back();
+    }
+
 }

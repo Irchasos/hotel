@@ -17,12 +17,12 @@ class Comment extends Model
         return $this->morphTo();
     }
 
-    final public function user():MorphMany
+    final public function user()
     {
         return $this->belongsTo('App\User');
     }
 
-    final public function photos():MorphMany
+    final public function photos()
     {
         return $this->morphmany('App\Photo', 'photoable');
     }

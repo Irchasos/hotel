@@ -14,15 +14,33 @@ class BackendGateway
         $this->bR = $bR;
     }
     public function getReservations($request){
-        if ($request->user()->hasRole(['owner','admin'])){
+        if ($request->user()->hasRole(['owner', 'admin'])) {
 
-           $objects= $this->bR->getOwnerReservations($request);
-        }
-        else{
-            $objects= $this->bR->getTouristReservations($request);
+            $objects = $this->bR->getOwnerReservations($request);
+        } else {
+            $objects = $this->bR->getTouristReservations($request);
 
         }
         return $objects;
     }
+
+    public function createCity($request)
+    {
+        $this->validate($request, [
+            'name' => 'required|string|unique:cities'
+        ]);
+        $this->bR->createCity($request);
+    }
+
+    public function updateCity($request, $id)
+    {
+        $this->validate($request,[
+            'name'=>"required|string|unique:cities",
+        ]);
+
+        $this->bR->updateCity($request, $id);
+    }
+
+
 }
 

@@ -59,4 +59,8 @@ class TouristObject extends Model
     {
         return $this->morphToMany('App\User', 'likeable');
     }
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

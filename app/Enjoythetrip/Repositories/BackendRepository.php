@@ -3,9 +3,10 @@ declare(strict_types=1);
 
 namespace App\Enjoythetrip\Repositories;
 
+use App\City;
 use App\Enjoythetrip\Interfaces\BackendRepositoryInterface;
-use App\TouristObject;
 use App\Reservation;
+use App\TouristObject;
 
 
 class BackendRepository implements BackendRepositoryInterface
@@ -55,6 +56,48 @@ class BackendRepository implements BackendRepositoryInterface
 
 
     }
+
+    public function getReservation($id)
+    {
+        return Reservation::find($id);
+    }
+
+
+    public function deleteReservation(Reservation $reservation)
+    {
+        return $reservation->delete();
+    }
+
+
+    public function confirmReservation(Reservation $reservation)
+    {
+        return $reservation->update(['status' => true]);
+    }
+
+    public function getCities()
+    {
+        return City::all();
+    }
+    public function getCity($id)
+    {
+        return City::find($id);
+    }
+    public function createCity($request)
+    {
+        return City::create([
+            'name' => $request->input('name'),
+        ]);
+    }
+
+    public function updateCity($request, $id)
+    {
+        return City::where('id',$id)->update([
+            'name' => $request->input('name')
+        ]);
+    }
+
+    public function deleteCity($id)
+    {
+        return City::where('id', $id)->delete();
+    }
 }
-
-

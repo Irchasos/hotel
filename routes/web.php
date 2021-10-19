@@ -24,12 +24,11 @@ Route::group(
     Route::get('/saveObject', 'BackendController@saveobject')->name('saveObject');
     Route::get('/profile', 'BackendController@profile')->name('profile');
     Route::get('/saveroom', 'BackendController@saveroom')->name('saveRoom');
-    Route::get('/cities', 'BackendController@cities')->name('cities.index');
-
 
     Route::get('/ajaxGetReservationData', 'BackendController@ajaxGetReservationData')->name('ajaxGetReservationData');
     Route::get('/confirmReservation/{id}', 'BackendController@confirmResLink')->name('confirmReservation');
     Route::get('/deleteReservation/{id}', 'BackendController@deleteResLink')->name('deleteReservation');
+    Route::resource('cities','CityController');
 }
 );
 Auth::routes();
