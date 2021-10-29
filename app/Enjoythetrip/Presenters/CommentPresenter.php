@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace App\Enjoythetrip\Presenters;
 trait CommentPresenter
 {
@@ -17,7 +18,7 @@ trait CommentPresenter
             } elseif ($value == 4 && $i > 4) {
                 $negr = '-empty';
             }
-            $str .= '<span class="glyphicon glyphicon-star'.$negr.'" aria-hidden="true"></span>';
+            $str .= '<span class="glyphicon glyphicon-star' . $negr . '" aria-hidden="true"></span>';
         }
         return $str;
     }

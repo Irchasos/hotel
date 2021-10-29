@@ -5,7 +5,8 @@ namespace App\Enjoythetrip\Traits;
 
 use Illuminate\Http\Request;
 
-trait Ajax {
+trait Ajax
+{
 
 
     public function ajaxGetReservationData(Request $request)

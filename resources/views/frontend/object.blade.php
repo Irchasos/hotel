@@ -107,19 +107,21 @@
             @endforeach        </section>
 
         @auth()
-            <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
+            <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample"
+               aria-expanded="false"
                aria-controls="collapseExample">
                 Add comment
             </a>
         @else
             <p><a href="{{route('login')}}">Zaloguj się aby dodac komentarz> </a></p>
-            @endauth
+        @endauth
 
         <div class="collapse" id="collapseExample">
             <div class="well">
 
 
-                <form method="POST" action="{{route('addComment',['object_id'=>$object->id,'App\TouristObject'])}}" class="form-horizontal">
+                <form method="POST" action="{{route('addComment',['object_id'=>$object->id,'App\TouristObject'])}}"
+                      class="form-horizontal">
                     @csrf
                     <fieldset>
                         <div class="form-group">

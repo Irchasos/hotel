@@ -40,7 +40,9 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <form {{$novalidate}} action="{{route('makeReservation',['room_id'=>$room->id,'city_id'=>$room->object->city->id])}}" method="POST">
+                    <form
+                        {{$novalidate}} action="{{route('makeReservation',['room_id'=>$room->id,'city_id'=>$room->object->city->id])}}"
+                        method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="checkin">Check in</label>

@@ -1,7 +1,8 @@
 @extends('layouts.backend')
 @section('content')
-    <h1>Cities <small><a class="btn btn-success" href="{{route('cities.create')}}" data-type="button"> <span class="glyphicon glyphicon-plus"
-                                                                                    aria-hidden="true"></span>New city
+    <h1>Cities <small><a class="btn btn-success" href="{{route('cities.create')}}" data-type="button"> <span
+                    class="glyphicon glyphicon-plus"
+                    aria-hidden="true"></span>New city
             </a></small></h1>
 
     <div class="table-responsive">
@@ -18,7 +19,8 @@
                                                                                    aria-hidden="true"></span></a>
                         <form style="display: inline" method="post"
                               action="{{route('cities.destroy',['id'=>$city->id])}}">
-                            <button type="submit" class="btn btn-primary btn-xs" onclick="return confirm('Are you sure?');"><span
+                            <button type="submit" class="btn btn-primary btn-xs"
+                                    onclick="return confirm('Are you sure?');"><span
                                     class="glyphicon glyphicon-trash"
                                     aria-hidden="true"></span></button>
                             {{method_field('DELETE')}}

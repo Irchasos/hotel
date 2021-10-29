@@ -1,17 +1,23 @@
 @extends('layouts.frontend')
 @section('content')
-<div class="container">
-    <h1>Article <small>about:<a href="{{route('object',['id'=>$article->object->id])}}">{{$article->object->name}}</a>object</small></h1>
+    <div class="container">
+        <h1>Article <small>about:<a
+                    href="{{route('object',['id'=>$article->object->id])}}">{{$article->object->name}}</a>object</small>
+        </h1>
         <p>{{$article->object->description}}</p>
         <a class="btn btn-primary top-buffer" role="button" data-toggle="collapse" href="#collapseExample"
-           aria-expanded="false" aria-controls="collapseExample">Article is liked <span class="badge">{{$article->users->count()}}</span>
+           aria-expanded="false" aria-controls="collapseExample">Article is liked <span
+                class="badge">{{$article->users->count()}}</span>
         </a>
         <div class="collapse" id="collapseExample">
             <div class="well">
                 <ul class="list-inline">
                     @foreach($article->users as $user)
                         <li><a href="" {{route('person',['id'=>$user->id])}}""><img title="{{$user->FullName}}"
-                            class="media-object img-responsive" width="50" height="50" src="{{$user->photos->first()->path ?? $placeholder}}" alt="...">
+                                                                                    class="media-object img-responsive"
+                                                                                    width="50" height="50"
+                                                                                    src="{{$user->photos->first()->path ?? $placeholder}}"
+                                                                                    alt="...">
                             </a>
                         </li>
                     @endforeach
@@ -19,19 +25,20 @@
             </div>
         </div>
         <h3>Comments</h3>
-                @foreach($article->comments as $comment)
-                <div class="media">
-                        <div class="media-left media-top">
-                            <a href="{{route('person',['id'=>$comment->user->id])}}">
-                                <img class="media-object" width="50" height="50" src="{{$comment->user->photos->first()->path ?? $placeholder}}" alt="...">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            {{$comment->content}}
-                        </div>
+        @foreach($article->comments as $comment)
+            <div class="media">
+                <div class="media-left media-top">
+                    <a href="{{route('person',['id'=>$comment->user->id])}}">
+                        <img class="media-object" width="50" height="50"
+                             src="{{$comment->user->photos->first()->path ?? $placeholder}}" alt="...">
+                    </a>
                 </div>
-                <hr>
-            @endforeach
+                <div class="media-body">
+                    {{$comment->content}}
+                </div>
+            </div>
+            <hr>
+        @endforeach
         @auth
 
             @if( $article->isLiked() )
@@ -44,7 +51,8 @@
 
         @else
             <p>
-                <a href="{{route('login')}}" class="btn btn-primary btn-xs top-buffer">Zaloguj się aby polubić ten artykul</a>
+                <a href="{{route('login')}}" class="btn btn-primary btn-xs top-buffer">Zaloguj się aby polubić ten
+                    artykul</a>
             </p>
         @endauth
         @auth()

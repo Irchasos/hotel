@@ -1,46 +1,78 @@
 <?php
 declare(strict_types=1);
+
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Enjoythetrip\Interfaces\BackendRepositoryInterface;
 use App\Enjoythetrip\Gateways\BackendGateway;
+use App\Enjoythetrip\Interfaces\BackendRepositoryInterface;
+use App\Enjoythetrip\Traits\Ajax;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 class BackendController extends Controller
 {
-    use \App\Enjoythetrip\Traits\Ajax;
+    use Ajax;
 
-    public function __construct(BackendRepositoryInterface $backendRepository, BackendGateway $backendGateway )
+    public function __construct(BackendRepositoryInterface $backendRepository, BackendGateway $backendGateway)
     {
-        $this->middleware('CheckOwner')->only(['myobjects','confirmReservation','saveobject','saveroom']);
+        $this->middleware('CheckOwner')->only(['myobjects', 'confirmReservation', 'saveobject', 'saveroom']);
         $this->bR = $backendRepository;
         $this->bG = $backendGateway;
     }
-    public function index(Request $request)
+
+    final public function index(Request $request)
     {
-        $objects=$this->bG->getReservations($request);
-        return view('backend.index',['objects'=>$objects]);
+        $objects = $this->bG->getReservations($request);
+        return view('backend.index', ['objects' => $objects]);
     }
 
 
-    public function myObjects()
+    final public function myObjects()
     {
         return view('backend.myobjects');
     }
 
-    public function profile()
+    public function profile(Request $request)
     {
-        return view('backend.profile');
+
+        if ($request->isMethod('post')) {
+
+            $user = $this->bG->saveUser($request);
+
+            if ($request->hasFile('userPicture')) {
+                $path = $request->File('userPicture')->store('users', 'public');
+                if (count($user->photos) != 0) {
+                    $photo = $this->bR->getPhoto($user->photos->first()->id);
+
+                    Storage::disk('public')->delete($photo->storagepath);
+                    $photo->path = $path;
+
+                    $this->bR->updateUserPhoto($user, $photo);
+
+                } else {
+                    $this->bR->createUserPhoto($user, $path);
+                }
+
+            }
+
+
+            return redirect()->back();
+        }
+
+        return view('backend.profile', ['user' => Auth::user()]);
     }
 
-    public function saveObject()
+    final public function saveObject()
     {
         return view('backend.saveobject');
     }
 
-    public function saveRoom()
+    final public function saveRoom()
     {
         return view('backend.saveroom');
     }
-    public function confirmReservation($id)
+
+    final public function confirmReservation($id)
     {
         $reservation = $this->bR->getReservation($id);
 
@@ -48,16 +80,16 @@ class BackendController extends Controller
 
         $this->bR->confirmReservation($reservation);
 
-        $this->flashMsg ('success', __('Reservation has been confirmed'));
+        $this->flashMsg('success', __('Reservation has been confirmed'));
 
 
-        if (!\Request::ajax())
+        if (!\Request::ajax()) {
             return redirect()->back();
+        }
     }
 
 
-
-    public function deleteReservation($id)
+    final public function deleteReservation($id)
     {
         $reservation = $this->bR->getReservation($id);
 
@@ -65,10 +97,20 @@ class BackendController extends Controller
 
         $this->bR->deleteReservation($reservation);
 
-        $this->flashMsg ('success', __('Reservation has been deleted'));
+        $this->flashMsg('success', __('Reservation has been deleted'));
 
-        if (!\Request::ajax())
+        if (!\Request::ajax()) {
             return redirect()->back();
+        }
     }
 
+    final public function deletePhoto($id)
+    {
+        $photo = $this->bR->getPhoto($id);
+        $this->authorize('checkOwner', $photo);
+        $path = $this->bR->deletePhoto($photo);
+        Storage::disk('public')->delete($path);
+
+        return redirect()->back();
+    }
 }

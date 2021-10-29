@@ -3,8 +3,8 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\Reservation;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 
@@ -21,7 +21,7 @@ class ReservationPolicy
 
     public function reservation(User $user, Reservation $reservation)
     {
-        if($user->hasRole(['owner','admin']))
+        if ($user->hasRole(['owner', 'admin']))
             return $user->id === $reservation->room->object->user->id;
         else
             return $user->id === $reservation->user_id;

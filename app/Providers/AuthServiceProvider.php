@@ -1,12 +1,19 @@
 <?php
+
 namespace App\Providers;
-use Illuminate\Support\Facades\Gate;
+
+use App\Photo;
+use App\Policies\PhotoPolicy;
+use App\Policies\ReservationPolicy;
+use App\Reservation;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+
 class AuthServiceProvider extends ServiceProvider
 {
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
-        'App\Reservation' => 'App\Policies\ReservationPolicy' /* Lecture 35 */
+        Reservation::class => ReservationPolicy::class,
+        Photo::class => PhotoPolicy::class
     ];
 
     public function boot()

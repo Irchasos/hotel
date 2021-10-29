@@ -5,8 +5,10 @@ namespace App\Enjoythetrip\Repositories;
 
 use App\City;
 use App\Enjoythetrip\Interfaces\BackendRepositoryInterface;
+use App\Photo;
 use App\Reservation;
 use App\TouristObject;
+use App\User;
 
 
 class BackendRepository implements BackendRepositoryInterface
@@ -78,10 +80,12 @@ class BackendRepository implements BackendRepositoryInterface
     {
         return City::all();
     }
+
     public function getCity($id)
     {
         return City::find($id);
     }
+
     public function createCity($request)
     {
         return City::create([
@@ -91,7 +95,7 @@ class BackendRepository implements BackendRepositoryInterface
 
     public function updateCity($request, $id)
     {
-        return City::where('id',$id)->update([
+        return City::where('id', $id)->update([
             'name' => $request->input('name')
         ]);
     }
@@ -99,5 +103,40 @@ class BackendRepository implements BackendRepositoryInterface
     public function deleteCity($id)
     {
         return City::where('id', $id)->delete();
+    }
+
+    public function saveUser($request)
+    {
+        $user = User::find($request->user()->id);
+        $user->name = $request->input('name');
+        $user->surname = $request->input('surname');
+        $user->email = $request->input('email');
+        $user->save();
+
+        return $user;
+    }
+
+    public function getPhoto($id)
+    {
+        return Photo::find($id);
+    }
+
+    public function updateUserPhoto($user, $photo)
+    {
+        return $user->photos()->save($photo);
+    }
+
+    public function createUserPhoto($user, $path)
+    {
+        $photo = new Photo;
+        $photo->path = $path;
+        return $user->photos()->save($photo);
+    }
+
+    public function deletePhoto(Photo $photo)
+    {
+        $path = $photo->storagepath;
+        $photo->delete();
+        return $path;
     }
 }
