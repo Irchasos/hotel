@@ -103,7 +103,7 @@ class FrontendGateway
 
 
         ]);
-      return  $this->fR->makeReservation($room_id,$city_id,$request);
+        return $this->fR->makeReservation($room_id, $city_id, $request);
     }
 }
 

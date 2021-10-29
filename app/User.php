@@ -26,12 +26,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    final public function objects():Relations
+    final public function objects(): Relations
     {
         return $this->morphedByMany('App\TouristObject', 'likeable');
     }
 
-    final public function larticles():Relations
+    final public function larticles(): Relations
     {
         return $this->morphedByMany('App\Article', 'likeable');
     }
@@ -51,7 +51,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment', 'commentable_type');
     }
 
-    public function reservations():Relations
+    public function reservations(): Relations
     {
         return $this->hasMany('App\Reservation');
     }

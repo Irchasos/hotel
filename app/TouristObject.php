@@ -35,7 +35,7 @@ class TouristObject extends Model
         return $this->hasOne('App\Address');
     }
 
-    final public function rooms():HasMany
+    final public function rooms(): HasMany
     {
         return $this->hasMany('App\Room');
     }
@@ -59,6 +59,7 @@ class TouristObject extends Model
     {
         return $this->morphToMany('App\User', 'likeable');
     }
+
     public function user()
     {
         return $this->belongsTo('App\User');

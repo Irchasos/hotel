@@ -1,14 +1,16 @@
 <?php
 declare(strict_types=1);
+
 namespace App\Enjoythetrip\Repositories;
+
 use App\Article;
 use App\City;
+use App\Comment;
 use App\Enjoythetrip\Interfaces\FrontendRepositoryInterface;
 use App\Reservation;
 use App\Room;
 use App\TouristObject;
 use App\User;
-use App\Comment;
 
 class FrontendRepository implements FrontendRepositoryInterface
 {
@@ -64,6 +66,7 @@ class FrontendRepository implements FrontendRepositoryInterface
         $likeable = $type::find($likeable_id);
         return $likeable->users()->detach($request->user()->id);
     }
+
     public function addComment($commentable_id, $type, $request)
     {
         $commentable = $type::find($commentable_id);
@@ -73,14 +76,16 @@ class FrontendRepository implements FrontendRepositoryInterface
         $comment->user_id = $request->user()->id;
         return $commentable->comments()->save($comment);
     }
-    public function makeReservation($room_id, $city_id, $request){
+
+    public function makeReservation($room_id, $city_id, $request)
+    {
         return Reservation::create([
-            'user_id'=>$request->user()->id,
-            'city_id'=>$city_id,
-            'room_id'=>$city_id,
-            'status'=>0,
-                'day_in'=>date('Y-m-d', strtotime($request->input('checkin'))),
-                'day_out'=>date('Y-m-d', strtotime($request->input('checkout')))
+                'user_id' => $request->user()->id,
+                'city_id' => $city_id,
+                'room_id' => $city_id,
+                'status' => 0,
+                'day_in' => date('Y-m-d', strtotime($request->input('checkin'))),
+                'day_out' => date('Y-m-d', strtotime($request->input('checkout')))
             ]
 
         );

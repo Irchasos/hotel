@@ -12,7 +12,7 @@ class Comment extends Model
 
     public $timestamps = false;
 
-    final public function commmentable():MorphTo
+    final public function commmentable(): MorphTo
     {
         return $this->morphTo();
     }

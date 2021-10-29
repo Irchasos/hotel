@@ -8,6 +8,7 @@ function datesBetween(startDt, endDt) {
     }
     return between;
 }
+
 var Ajax = {
     get: function (url, success, data = null, beforeSend = null) {
         $.ajax({
@@ -54,6 +55,6 @@ var App = {
         }
     }
 };
-$(document).on('click','.dropdown',function(e){
+$(document).on('click', '.dropdown', function (e) {
     e.stopPropagation();
 })

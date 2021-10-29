@@ -1,4 +1,3 @@
-
 @extends('layouts.backend') <!-- Lecture 37 -->
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 @section('content')
     <div class="container places">
-        <h1 class="text-center">Room in <a
+        <h1 class="text-center">{{ __('mainpage.room_in') }} <a
                 href="{{route('object',['room'=>$room->tourist_object_id])}}">{{$room->object->name}}</a></h1>
 
         @foreach($room->photos->chunk(3) as $chunked_photos )
@@ -20,39 +20,41 @@
 
             <ul class="list-group">
                 <li class="list-group-item">
-                    <span class="bolded">Description:</span> {{$room->description}}</li>
+                    <span class="bolded">{{ trans('mainpage.description') }}</span> {{$room->description}}</li>
                 <li class="list-group-item">
-                    <span class="bolded">Room size:</span> {{$room->room_size}}
+                    <span class="bolded">{{ trans('mainpage.room_size2') }}</span> {{$room->room_size}}
                 </li>
                 <li class="list-group-item">
-                    <span class="bolded">Price per night:</span> {{$room->price}}
+                    <span class="bolded">{{ trans('mainpage.price_per_night') }}</span> {{$room->price}}
                 </li>
                 <li class="list-group-item">
                     <span
-                        class="bolded">Address:</span> {{$room->object->city->name}} {{$room->object->address->street}} {{$room->object->address->number}}
+                        class="bolded">{{ trans('mainpage.address2') }}</span> {{$room->object->city->name}} {{$room->object->address->street}} {{$room->object->address->number}}
                 </li>
             </ul>
         </section>
 
         <section id="reservation">
 
-            <h3>Reservation</h3>
+            <h3>{{ trans('mainpage.reservation') }}</h3>
 
             <div class="row">
                 <div class="col-md-6">
-                    <form {{$novalidate}} action="{{route('makeReservation',['room_id'=>$room->id,'city_id'=>$room->object->city->id])}}" method="POST">
+                    <form
+                        {{$novalidate}} action="{{route('makeReservation',['room_id'=>$room->id,'city_id'=>$room->object->city->id])}}"
+                        method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="checkin">Check in</label>
+                            <label for="checkin">{{ trans('mainpage.CheckIn') }}</label>
                             <input required name="checkin" type="text" class="form-control datepicker" id="checkin"
                                    placeholder="">
                         </div>
                         <div class="form-group">
-                            <label for="checkout">Check out</label>
+                            <label for="checkout">{{ trans('mainpage.check_out') }}</label>
                             <input required name="checkout" type="text" class="form-control datepicker" id="checkout"
                                    placeholder="">
                         </div>
-                        <button type="submit" class="btn btn-primary">Book</button>
+                        <button type="submit" class="btn btn-primary">{{ trans('mainpage.book') }}</button>
                         <p class="text-danger">{{Session::get('reservationMSG')}}</p>
                     </form>
                 </div>

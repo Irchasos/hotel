@@ -21,14 +21,15 @@ Route::group(
     ['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', 'BackendController@index')->name('adminHome');
     Route::get('/myObjects', 'BackendController@myobjects')->name('myObjects');
-    Route::get('/saveObject', 'BackendController@saveobject')->name('saveObject');
-    Route::get('/profile', 'BackendController@profile')->name('profile');
+    Route::match(['GET', 'POST'], '/saveobject/{id?}', 'BackendController@saveobject')->name('saveObject');
+    Route::match(['GET', 'POST'], '/profile', 'BackendController@profile')->name('profile');
     Route::get('/saveroom', 'BackendController@saveroom')->name('saveRoom');
+    Route::get('/deletePhoto/{id}', 'BackendController@deletePhoto')->name('deletePhoto');
 
     Route::get('/ajaxGetReservationData', 'BackendController@ajaxGetReservationData')->name('ajaxGetReservationData');
     Route::get('/confirmReservation/{id}', 'BackendController@confirmResLink')->name('confirmReservation');
     Route::get('/deleteReservation/{id}', 'BackendController@deleteResLink')->name('deleteReservation');
-    Route::resource('cities','CityController');
+    Route::resource('cities', 'CityController');
 }
 );
 Auth::routes();

@@ -1,16 +1,39 @@
 <?php
-declare(strict_types=1);
 
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
+
 
 class Photo extends Model
 {
-    final public function photoable():MorphTo
+
+    public $timestamps = false;
+
+
+    public function photoable()
     {
         return $this->morphTo();
-
     }
+
+
+    public function getPathAttribute($value)
+    {
+        return asset("storage/{$value}");
+    }
+
+
+    public function getStoragepathAttribute()
+    {
+        return $this->original['path'];
+    }
+
+    public static function imageRules($resource, $type)
+    {
+        for ($i = 0; $i <= count($request->file($type)) - 1; $i++) {
+            $rules["$type.$i"]-'image|max:4000';
+        }
+        return $rules;
+    }
+
 }

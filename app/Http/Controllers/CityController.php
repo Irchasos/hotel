@@ -36,13 +36,14 @@ class CityController extends Controller
 
     public function edit($id)
     {
-        return view('backend.cities.edit',['city'=>$this->bR->getCity($id)]);
+        return view('backend.cities.edit', ['city' => $this->bR->getCity($id)]);
     }
 
-    public function update(Request $request,int $id)
+    public function update(Request $request, int $id)
     {
-        $this->bG->updateCity($request,$id);
-        return redirect('/admin/cities');    }
+        $this->bG->updateCity($request, $id);
+        return redirect('/admin/cities');
+    }
 
 
     public function destroy($id)

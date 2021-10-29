@@ -7,11 +7,11 @@
         <p>{{ $object->description }}</p>
 
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#gallery" data-toggle="tab" aria-expanded="true">Image gallery</a></li>
-            <li><a href="#people" data-toggle="tab" aria-expanded="true">Object is liked <span
+            <li class="active"><a href="#gallery" data-toggle="tab" aria-expanded="true">{{ trans('mainpage.image_gallery') }}</a></li>
+            <li><a href="#people" data-toggle="tab" aria-expanded="true">{{ trans('mainpage.Object is liked')}} <span
                         class="badge">{{$object->users->count()}}</span></a>
             </li>
-            <li><a href="#adress" data-toggle="tab" aria-expanded="false">Address</a></li>
+            <li><a href="#adress" data-toggle="tab" aria-expanded="false">{{ trans('mainpage.address') }}</a></li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade active in" id="gallery">
@@ -54,7 +54,7 @@
 
         <section>
 
-            <h2 class="text-center">Object rooms</h2>
+            <h2 class="text-center">{{ trans('mainpage.object_rooms') }}</h2>
 
             @foreach($object->rooms->chunk(3) as $chunked_rooms)
                 <div class="row">
@@ -71,10 +71,10 @@
                                     <h3>Nr {{$room->room_number}} </h3>
                                     <p>{{str_limit ($room->description,100)}}</p>
                                     <p><a href="{{route('room',['id'=>$room->id])}}" class="btn btn-primary"
-                                          role="button">Details</a><a
+                                          role="button">{{ trans('mainpage.details') }}</a><a
                                             href="{{route('room',['id'=>$room->id])}}#reservation"
                                             class="btn btn-success pull-right"
-                                            role="button">Reservation</a></p>
+                                            role="button">{{ trans('mainpage.reservation') }}</a></p>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
         </section>
 
         <section>
-            <h2 class="green">Object comments</h2>
+            <h2 class="green">{{ trans('mainpage.object_comments') }}</h2>
             @foreach($object->comments as $comment)
                 <div class="media">
                     <div class="media-left media-top">
@@ -107,32 +107,34 @@
             @endforeach        </section>
 
         @auth()
-            <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
+            <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample"
+               aria-expanded="false"
                aria-controls="collapseExample">
-                Add comment
+                {{ trans('mainpage.add_comment') }}
             </a>
         @else
-            <p><a href="{{route('login')}}">Zaloguj się aby dodac komentarz> </a></p>
-            @endauth
+            <p><a href="{{route('login')}}">{{ trans('mainpage.zaloguj_si_aby_dodac_komentarz') }} </a></p>
+        @endauth
 
         <div class="collapse" id="collapseExample">
             <div class="well">
 
 
-                <form method="POST" action="{{route('addComment',['object_id'=>$object->id,'App\TouristObject'])}}" class="form-horizontal">
+                <form method="POST" action="{{route('addComment',['object_id'=>$object->id,'App\TouristObject'])}}"
+                      class="form-horizontal">
                     @csrf
                     <fieldset>
                         <div class="form-group">
-                            <label for="textArea" class="col-lg-2 control-label">Comment</label>
+                            <label for="textArea" class="col-lg-2 control-label">{{ trans('mainpage.comment') }}</label>
                             <div class="col-lg-10">
                                 <textarea required name="content" class="form-control" rows="3"
                                           id="textArea"></textarea>
-                                <span class="help-block">Add a comment about this object.</span>
+                                <span class="help-block">{{ trans('mainpage.add_a_comment_about_this_object') }}</span>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="select" class="col-lg-2 control-label">Rating</label>
+                            <label for="select" class="col-lg-2 control-label">{{ trans('mainpage.rating') }}</label>
                             <div class="col-lg-10">
                                 <select name="rating" class="form-control" id="select">
                                     <option value="5">5</option>
@@ -145,7 +147,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-lg-10 col-lg-offset-2">
-                                <button type="submit" class="btn btn-primary">Send</button>
+                                <button type="submit" class="btn btn-primary">{{ trans('mainpage.send') }}</button>
                             </div>
                         </div>
                     </fieldset>
@@ -155,7 +157,7 @@
         </div>
 
         <section>
-            <h2 class="red">Articles about the object / area</h2>
+            <h2 class="red">{{ trans('mainpage.articles_about_the_object_area') }}</h2>
             @foreach($object->articles as $article)
                 <div class="articles-list">
                     <h4 class="top-buffer">{{$article->title}}</h4>
@@ -163,7 +165,7 @@
                         <i>{{$article->created_at}}</i>
                     </p>
                     <p>{{str_limit($article->content,300)}} </p> <a
-                        href="{{route('article',['id'=>$article->id])}}">More</a>
+                        href="{{route('article',['id'=>$article->id])}}">{{ trans('mainpage.more') }}</a>
                 </div>
 
             @endforeach        </section>
@@ -172,18 +174,17 @@
         @auth
             @if($object->isLiked())
                 <a href="{{route('unlike',['id'=>$object->id,'type'=>'App\TouristObject'])}}"
-                   class="btn btn-primary btn-xs top-buffer">UnLike this object</a>
+                   class="btn btn-primary btn-xs top-buffer">{{ trans('mainpage.unlike_this_object') }}</a>
 
             @else
                 <a href="{{route('like',['id'=>$object->id,'type'=>'App\TouristObject'])}}"
-                   class="btn btn-primary btn-xs top-buffer">Like this object</a>
+                   class="btn btn-primary btn-xs top-buffer">{{ trans('mainpage.like_this_object') }}</a>
 
             @endif
 
         @else
             <p>
-                <a href="{{route('login')}}" class="btn btn-primary btn-xs top-buffer">Zaloguj się aby polubić ten
-                    obiekt</a>
+                <a href="{{route('login')}}" class="btn btn-primary btn-xs top-buffer">{{ trans('mainpage.zaloguj_si_aby_polubi_ten_obiekt') }}</a>
             </p>
         @endauth
     </div>

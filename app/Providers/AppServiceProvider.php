@@ -9,13 +9,12 @@ class AppServiceProvider extends ServiceProvider
 {
 
 
-
     public function register()
     {
         $this->app->bind(
             \App\Enjoythetrip\Interfaces\FrontendRepositoryInterface::class, function () {
-                return new  \App\Enjoythetrip\Repositories\FrontendRepository;
-            }
+            return new  \App\Enjoythetrip\Repositories\FrontendRepository;
+        }
         );
         $this->app->bind(
             \App\Enjoythetrip\Interfaces\BackendRepositoryInterface::class, function () {
