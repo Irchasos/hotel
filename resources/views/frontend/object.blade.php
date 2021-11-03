@@ -7,7 +7,8 @@
         <p>{{ $object->description }}</p>
 
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#gallery" data-toggle="tab" aria-expanded="true">{{ trans('mainpage.image_gallery') }}</a></li>
+            <li class="active"><a href="#gallery" data-toggle="tab"
+                                  aria-expanded="true">{{ trans('mainpage.image_gallery') }}</a></li>
             <li><a href="#people" data-toggle="tab" aria-expanded="true">{{ trans('mainpage.Object is liked')}} <span
                         class="badge">{{$object->users->count()}}</span></a>
             </li>
@@ -184,7 +185,8 @@
 
         @else
             <p>
-                <a href="{{route('login')}}" class="btn btn-primary btn-xs top-buffer">{{ trans('mainpage.zaloguj_si_aby_polubi_ten_obiekt') }}</a>
+                <a href="{{route('login')}}"
+                   class="btn btn-primary btn-xs top-buffer">{{ trans('mainpage.zaloguj_si_aby_polubi_ten_obiekt') }}</a>
             </p>
         @endauth
     </div>

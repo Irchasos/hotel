@@ -10,7 +10,7 @@
       "translationsDirectory" : "$PROJECT_DIR$/resources/lang",
       "fileType" : "php",
       "defaultLocale" : "en",
-      "namespaces" : [ "mainpage" ],
+      "namespaces" : [ "auth" ],
       "outputFilenameTemplate" : "%locale%/%namespace%.php",
       "nestingType" : "DISABLED",
       "placeholderFormatterName" : "SYMFONY_REPLACEMENT"

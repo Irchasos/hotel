@@ -18,9 +18,11 @@
                                 <h3>Nr {{$room->room_number}} <small class="orange bolded">{{$room->price}}zł</small>
                                 </h3>
                                 <p>{{str_limit($room->description,80)}}</p>
-                                <p><a href="{{route('room',['id'=>$room->id])}}" class="btn btn-primary" role="button">{{ trans('mainpage.details') }}</a><a
+                                <p><a href="{{route('room',['id'=>$room->id])}}" class="btn btn-primary"
+                                      role="button">{{ trans('mainpage.details') }}</a><a
                                         href="{{route('room',['id'=>$room->id])}}#reservation"
-                                        class="btn btn-success pull-right" role="button">{{ trans('mainpage.reservation') }}</a></p>
+                                        class="btn btn-success pull-right"
+                                        role="button">{{ trans('mainpage.reservation') }}</a></p>
                             </div>
                         </div>
                     </div>

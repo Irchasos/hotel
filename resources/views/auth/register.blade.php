@@ -5,14 +5,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header">{{ trans('auth.register') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ trans('auth.name') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group row">
                                 <label for="surname"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ trans('auth.surname') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="surname" type="text"
@@ -45,7 +45,7 @@
 
                             <div class="form-group row">
                                 <label for="email"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ trans('auth.email_address2') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -62,7 +62,7 @@
 
                             <div class="form-group row">
                                 <label for="password"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ trans('auth.password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -79,7 +79,7 @@
 
                             <div class="form-group row">
                                 <label for="password-confirm"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                       class="col-md-4 col-form-label text-md-right">{{ trans('auth.confirm_password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
@@ -87,17 +87,16 @@
                                 </div>
                             </div>
                             <div class="form-group row col-md-6 col-offset-md-4">
-                                <div class="checkbox"><label><input type="checkbox" name="owner">Regster as a
-                                        owner</label>
+                                <div class="checkbox"><label>{!! trans('auth.regster_as_a_owner') !!}</label>
                                 </div>
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
                                         <button type="submit" class="btn btn-primary">
-                                            {{ __('Register') }}
+                                            {{ trans('auth.register') }}
                                         </button>
                                     </div>
                                 </div>
-                        </form>
+                            </div> </form>
                     </div>
                 </div>
             </div>
